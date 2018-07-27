@@ -1,0 +1,64 @@
+<!--
+Write an app that asks the user to input his name in an text input, and
+immediately - as they type - says Hello back to them and reports the number of characters in his name. Hints at the bottom of this file. For example, "Hello, Elaine! There are 6 letters in your name."
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Characters in Your Name</title>
+    <script src="angular.js"></script>
+  </head>
+  <body ng-app='my-app'ng-controller="Ex1Controller as vm">
+    <!-- write AngularJS template code here -->
+    <!-- <div>
+      <input type="text" ng-model="name"><br>
+      <label>Hello, {{ name }}!</label>
+    </div> -->
+    <!-- <div>
+      <form ng-submit="sayHello()">
+        <input type="text" ng-model="name">
+        <button>Submit</button><br>
+        {{ message }}
+      </form>
+    </div> -->
+    <div>
+      <form ng-submit="vm.sayHello()">
+        <input type="text" ng-model="vm.name">
+        <button>Submit</button><br>
+        {{ vm.message }}
+      </form>
+    </div>
+    <script>
+      var app = angular.module('my-app', []);
+      app.controller('Ex1Controller', function() {
+        var vm = this;
+        vm.name = '';
+        vm.sayHello = function() {
+          vm.message = `Hello, ${vm.name}! There are ${vm.name.length} letters in your name`;
+          vm.name = '';
+        };
+      });
+    </script>
+    <!-- <script src="app.js"></script>
+    <script src="Ex1Controller.js"></script> -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+Hints: look at angular-examples/1-hello-world.html for the structure. You can use the `.length` property to get the number
+of characters in a string. It even works in an AngularJS expression: `{{name.length}}`.
+
+-->
